@@ -45,14 +45,14 @@ export default {
 
     getClass(value) {
       if (value === 0) {
-        return 'bg-danger';
+        return 'bg-red-500';
       }
 
       if (value === 1) {
-        return 'bg-success';
+        return 'bg-green-500';
       }
 
-      return 'bg-warning';
+      return 'bg-yellow-500';
     },
   },
 }

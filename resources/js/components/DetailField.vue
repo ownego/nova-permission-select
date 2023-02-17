@@ -1,6 +1,6 @@
 <template>
-  <panel-item :field="field">
-    <template slot="value">
+  <PanelItem :index="index" :field="field">
+    <template #value>
       <ul class="list-none">
         <li
           v-for="group in value"
@@ -17,7 +17,13 @@
               <span
                 class="inline-flex items-center py-1 pl-2 pr-3"
               >
-                <boolean-icon :value="child.checked" width="20" height="20" />
+                <Icon
+                  viewBox="0 0 24 24"
+                  width="24"
+                  height="24"
+                  :type="getType(child.checked)"
+                  :class="getColor(child.checked)"
+                />
                 <span class="ml-1">{{ child.name }}</span>
               </span>
             </li>
@@ -25,12 +31,12 @@
         </li>
       </ul>
     </template>
-  </panel-item>
+  </PanelItem>
 </template>
 
 <script>
 export default {
-  props: ['resource', 'resourceName', 'resourceId', 'field'],
+  props: ['index', 'resource', 'resourceName', 'resourceId', 'field'],
 
   data: () => ({
     value: [],
@@ -81,6 +87,16 @@ export default {
         };
       })
       .value();
+  },
+
+  methods: {
+    getType(value) {
+      return value ? 'check-circle' : 'x-circle';
+    },
+
+    getColor(value) {
+      return value ? 'text-green-500' : 'text-red-500';
+    },
   }
 }
 </script>

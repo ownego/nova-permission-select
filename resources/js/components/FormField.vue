@@ -1,6 +1,6 @@
 <template>
-  <default-field :field="field" :errors="errors">
-    <template slot="field">
+  <DefaultField :field="field" :errors="errors">
+    <template #field>
       <ul class="list-none">
         <li
           v-for="group in value"
@@ -14,23 +14,23 @@
               v-for="child in group.children"
               :key="child.name"
             >
-              <checkbox-with-label
+              <CheckboxWithLabel
                 :name="child.name"
                 @input="toggle($event, group, child)"
                 :checked="child.checked"
               >
                 {{ child.name }}
-              </checkbox-with-label>
+              </CheckboxWithLabel>
             </li>
           </ul>
         </li>
       </ul>
     </template>
-  </default-field>
+  </DefaultField>
 </template>
 
 <script>
-import {FormField, HandlesValidationErrors} from 'laravel-nova'
+import { FormField, HandlesValidationErrors } from 'laravel-nova'
 
 export default {
   mixins: [FormField, HandlesValidationErrors],
